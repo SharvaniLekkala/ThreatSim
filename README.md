@@ -15,11 +15,6 @@ What the demo does
 - The chat agent retrieves matching memory and the LLM uses that memory as context.
 - If poisoned memory is present, the agent may repeat it confidently.
 
-Session feature (how I use it)
-- Each chat session has its own `session_id` so I can run parallel experiments.
-- The UI supports creating a new session (resets conversation state but keeps the memory store unless I explicitly clear it).
-- Endpoints related to sessions:
-	- `POST /chat` — includes `session_id` to keep conversation history separate.
 
 Local setup (copy-paste)
 
@@ -59,18 +54,6 @@ Why the model repeats false facts
 - The backend builds a `MEMORY CONTEXT` from retrieved memory and sends it to the LLM with a system instruction that tells the model to treat the memory as ground truth.
 - If the attacker-injected text matches the query, it appears in `MEMORY CONTEXT`, so the LLM answers confidently.
 
-How I avoid or reduce that behavior
-- Enable mitigation via the UI (`Mitigation` buttons) so poisoned nodes are filtered out by the search logic.
-- Clear memory or restore an earlier snapshot to remove injected entries.
-- Edit `backend/threats/T1_Memory_Poisoning/handler.py` to soften the system instruction (treat memory as evidence, not absolute truth) or add stricter validation on inputs.
 
-Notes for me (developer)
-- `backend/threats/T1_Memory_Poisoning/handler.py` contains the memory store, search, and `SYSTEM_INSTRUCTION` that controls LLM behavior.
-- `frontend/script.js` and `frontend/attacker.js` drive the UI flows (session, poison, chat, mitigation).
 
-If you want, I can:
-- enable mitigation by default, or
-- make the system instruction less authoritative, or
-- add stricter input validation to block suspicious injections.
 
-Pick one and I'll apply the change.
