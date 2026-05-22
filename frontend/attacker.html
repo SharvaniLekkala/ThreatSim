@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Threat Lab | Attacker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper attacker-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo danger-logo">ATTACK NODE</div>
+                <div class="nav-links">
+                    <a href="/chat">Chat</a>
+                    <a href="/attacker" class="active danger">Attacker</a>
+                </div>
+            </div>
+
+            <div class="status-panel">
+                <h3 id="status-title">Threat Status</h3>
+                <div class="status-gauge">
+                    <div id="status-bar" class="status-bar" style="width: 0%"></div>
+                </div>
+                <div class="status-stats">
+                    <span id="corruption-ratio">0%</span> <span id="status-unit">compromised</span>
+                </div>
+                <div id="system-health" class="health-badge secure">SECURE</div>
+            </div>
+
+            <div class="control-panel">
+                <h3>Shared Target</h3>
+                <p class="desc">Threats submitted here go to the same backend state used by the chat page.</p>
+                <button onclick="clearSimulation()" class="btn-clear">Clear / Reset Simulation</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1 id="header-title">Threat Console (T1)</h1>
+                    <p id="header-desc">Computer A side. Choose a threat and submit the attack payload.</p>
+                </div>
+            </header>
+
+            <section class="attack-panel">
+                <h2 id="scenario-title">Inject Poison</h2>
+                <p id="scenario-desc">Write a false fact into persistent memory. Computer B will retrieve this poisoned context.</p>
+                <textarea id="attack-input" placeholder="In football, players must use their hands to move the ball."></textarea>
+                <button id="scenario-button" onclick="sendAttack()" class="btn-poison">Send Threat</button>
+            </section>
+
+            <div id="attack-log" class="chat-box attack-log">
+                <div class="bot-msg">Select a threat and send the payload. Watch Computer B at /chat.</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="attacker.js"></script>
+</body>
+</html>

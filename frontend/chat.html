@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Threat Lab | Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">CHAT NODE</div>
+                <div class="nav-links">
+                    <a href="/chat" class="active">Chat</a>
+                    <a href="/attacker">Attacker</a>
+                </div>
+            </div>
+
+            <div class="status-panel">
+                <h3 id="status-title">Memory Integrity</h3>
+                <div class="status-gauge">
+                    <div id="status-bar" class="status-bar" style="width: 0%"></div>
+                </div>
+                <div class="status-stats">
+                    <span id="corruption-ratio">0%</span> <span id="status-unit">corrupted</span>
+                </div>
+                <div id="system-health" class="health-badge secure">SECURE</div>
+            </div>
+
+            <div class="control-panel">
+                <h3>Mitigation</h3>
+                <p class="desc">Enable defense on Computer B before or after Computer A sends a threat.</p>
+                <div class="button-row">
+                    <button onclick="setMitigation(true)" class="btn-success">Enable</button>
+                    <button onclick="setMitigation(false)" class="btn-danger-outline">Disable</button>
+                </div>
+                <button onclick="clearMemory()" class="btn-clear">Clear / Reset Simulation</button>
+            </div>
+
+            <div class="link-panel">
+                <h3>Separate Links</h3>
+                <p class="desc">Open these on two computers on the same machine/network setup.</p>
+                <code>http://127.0.0.1:8000/chat</code>
+                <code>http://127.0.0.1:8000/attacker</code>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <div>
+                    <h1 id="header-title">Agentic AI Chat (T1)</h1>
+                    <p id="header-desc">Victim/user side. Threats sent from the attacker page affect this shared backend state.</p>
+                </div>
+                <button onclick="newSession()" class="btn-clear compact">New Session</button>
+            </header>
+
+            <div id="chat-box" class="chat-box">
+                <div class="bot-msg">Open the attacker page in another tab/computer, send a threat, then chat here to see the effect.</div>
+            </div>
+
+            <div class="retrieval-indicator" id="retrieval-indicator">
+                <span class="pulse"></span> Running chat simulation...
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Ask the agent something" onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()" class="btn-send" aria-label="Send">
+                    <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
